@@ -33,21 +33,40 @@ app.get('/', function homepage(req, res) {
 /*
  * JSON API Endpoints
  */
+ app.get('/api', function api_index(req, res) {
+   // TODO: Document all your api endpoints below
+   res.json({
+     welcome_to_kates_api: true, // changed;)
+     message: "Welcome to my personal api! Here's what you need to know!",
+     documentation_url: "https://github.com/mkatenelson/express-personal-api/blob/master/README.md", // changed
+     base_url: "https://immense-escarpment-38307.herokuapp.com/api", // changed
+     endpoints: [
+       {method: "GET", path: "/api", description: "Describes all available endpoints"},
+       {method: "GET", path: "/api/profile", description: "About Kate"}, // changed
+      //  {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+     ]
+   })
+ });
 
-app.get('/api', function api_index(req, res) {
-  // TODO: Document all your api endpoints below
+app.get('/api/profile', function profile(req, res) {
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
-    message: "Welcome to my personal api! Here's what you need to know!",
-    documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
-    endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
-    ]
+    name: "Kate Nelson"
+    github_link: "https://github.com/mkatenelson/"
+    github_profile_image: "https://avatars2.githubusercontent.com/u/18627187?v=3&s=400"
+    current_city: "San Francisco"
+    Previous Employment: [{
+      company: "Cisco",
+      title:"Executive Communication Manager",
+      city:"RTP, NC"
+    },
+    {
+      company: "The Channel Company",
+      title:"Digital Marketing Coordinator",
+      city:"Raleigh, NC"
+    }];
   })
 });
+
 
 /**********
  * SERVER *
@@ -55,5 +74,7 @@ app.get('/api', function api_index(req, res) {
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
-  console.log('Express server is up and running on http://localhost:3000/');
+  console.log('Express server is up and running ont //localhost:3000/');
+});
+
 });

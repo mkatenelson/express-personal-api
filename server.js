@@ -11,7 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./book');
+var db = require('./controller');
 
 /**********
  * ROUTES *
@@ -37,13 +38,13 @@ app.get('/', function homepage(req, res) {
    // TODO: Document all your api endpoints below
    res.json({
      welcome_to_kates_api: true, // changed;)
-     message: "Welcome to my personal api! Here's what you need to know!",
+     message: "Kate's API",
      documentation_url: "https://github.com/mkatenelson/express-personal-api/blob/master/README.md", // changed
-     base_url: "https://immense-escarpment-38307.herokuapp.com/api", // changed
+     base_url: "https://immense-escarpment-38307.herokuapp.com", // changed
      endpoints: [
        {method: "GET", path: "/api", description: "Describes all available endpoints"},
        {method: "GET", path: "/api/profile", description: "About Kate"}, // changed
-      //  {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+       {method: "POST", path: "/api/reading", description: "working reading list"} // changed
      ]
    })
  });
@@ -64,6 +65,20 @@ app.get('/api/profile', function profile(req, res) {
       title:"Digital Marketing Coordinator",
       city:"Raleigh, NC"
     }];
+  })
+});
+
+app.get('/api/reading', function profile(req, res) {
+  res.json({
+    message: "Future reading list.",
+    Reading List: [{
+      title: "The Master and Margarita",
+      author:"Mikhail Bulgakov"
+    },
+    {
+      title: "Ready Player One",
+      author:"Ernest Cline"
+    },
   })
 });
 
